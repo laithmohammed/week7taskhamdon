@@ -31,7 +31,8 @@ app.get('/', (req, res) => {
         const decodeToken  = jwt.verify(req.session.user['X-auth-token'],'fikracamps'); // decode token and get expiry date of session
         if(Date.now() <= decodeToken.exp){ // if the date of this moment equel or less then expiry date of session
             res.setHeader("Content-Type", "text/html");
-            res.send("hi, "+ req.session.user.username + "<br/><a href='logout'>logout</a>");
+            // let itme = "<span style='color:blue;'>"+new Date(Date.now())+"</span>";
+            res.send("hi, "+ req.session.user.username + "<br/>auto <a href='logout'>logout</a> after 10 seconds" );
         }else{ // if the date of this moment greate then expiry date of session
             req.session.destroy(); // semove all session detailes
             res.setHeader("Content-Type", "text/html");
